@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:dev_meetups/models/event.dart';
+import 'package:meetups/models/event.dart';
 import 'package:http/http.dart' as http;
 
 const String baseUrl = 'http://192.168.100.76:8080/api';

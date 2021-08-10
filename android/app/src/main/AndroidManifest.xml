@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.alura.dev_meetups">
+    package="br.com.alura.meetups">
    <application
-        android:label="dev_meetups"
+        android:label="meetups"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
