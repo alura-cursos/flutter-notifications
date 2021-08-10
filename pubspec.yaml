@@ -1,4 +1,4 @@
-name: dev_meetups
+name: meetups
 description: Dev meetups is a flutter project to a course of the Alura
 
 # The following line prevents the package from being accidentally published to
@@ -32,6 +32,7 @@ dependencies:
   firebase_core:
   firebase_messaging:
   device_info_plus:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

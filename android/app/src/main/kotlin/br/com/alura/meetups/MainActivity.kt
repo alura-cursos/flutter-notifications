@@ -1,4 +1,4 @@
-package br.com.alura.dev_meetups
+package br.com.alura.meetups
 
 import io.flutter.embedding.android.FlutterActivity
 

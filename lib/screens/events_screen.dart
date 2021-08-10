@@ -1,6 +1,6 @@
-import 'package:dev_meetups/components/card.dart';
-import 'package:dev_meetups/http/web.dart';
-import 'package:dev_meetups/models/event.dart';
+import 'package:meetups/components/card.dart';
+import 'package:meetups/http/web.dart';
+import 'package:meetups/models/event.dart';
 import 'package:flutter/material.dart';
 
 class EventsScreen extends StatelessWidget {

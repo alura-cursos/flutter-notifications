@@ -1,8 +1,8 @@
 class Device {
   int? id;
-  String brand;
-  String model;
-  String token;
+  String? brand;
+  String? model;
+  String? token;
 
   Device({
     this.id,

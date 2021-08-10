@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:dev_meetups/models/device.dart';
-import 'package:dev_meetups/models/event.dart';
+import 'package:meetups/models/device.dart';
+import 'package:meetups/models/event.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-const String baseUrl = 'http://192.168.100.76:8080/api';
+const String baseUrl = 'http://192.168.1.104:8080/api';
 
 // Busca todos os eventos cadastrados
 Future<List<Event>> getAllEvents() async {
@@ -19,25 +20,28 @@ Future<List<Event>> getAllEvents() async {
   }
 }
 
-// Cadastra um novo token de dispositivo na aplicação web
-Future<Device> createDevice(String token) async {
+// Cadastra um novo dispositivo na aplicação web
+void sendDevice(Device device) async {
   final response = await http.post(
     Uri.parse('$baseUrl/devices'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'token': token,
+      'token': device.token ?? '',
+      'modelo': device.model ?? '',
+      'marca': device.brand ?? ''
     }),
   );
 
-  if (response.statusCode == 201) {
-    // Se o servidor retornou uma resposta 201 CREATED,
-    // em seguida, converte o JSON.
-    return Device.fromJson(jsonDecode(response.body));
-  } else {
-    // Se o servidor não retornou uma resposta 201 CREATED,
-    // então lança uma exceção.
-    throw Exception('Failed to create album.');
+  // Valida se o token já foi enviado ou não
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('pushToken', device.token!);
+  prefs.setBool('tokenSent', false);
+
+  if (response.statusCode != 200)
+    throw Exception('Falha para criar o dispositivo');
+  else {
+    prefs.setBool('tokenSent', true);
   }
 }
