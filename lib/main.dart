@@ -1,4 +1,4 @@
-import 'package:dev_meetups/screens/events_screen.dart';
+import 'package:meetups/screens/events_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());
