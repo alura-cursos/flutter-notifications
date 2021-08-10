@@ -20,6 +20,15 @@ void main() async {
 
   setPushToken(token);
 
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Recebi uma mensagem enquanto estava em primeiro plano!');
+    print('Dados da mensagem: ${message.data}');
+
+    if (message.notification != null) {
+      print('A mensagem também continha uma notificação: ${message.notification!.title}, ${message.notification!.body}');
+    }
+  });
+
   runApp(App());
 }
 
@@ -43,7 +52,7 @@ void setPushToken(String? token) async {
 
   print('Prefs token - $prefsToken');
 
-  if(prefsToken != token || (prefsToken == token && prefsSent == false)) {
+  if((prefsToken != token && token != null) || (prefsToken == token && prefsSent == false)) {
     print('Enviando o token para o servidor');
 
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
