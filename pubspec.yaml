@@ -31,6 +31,7 @@ dependencies:
   http:
   firebase_core:
   firebase_messaging:
+  device_info_plus:
 
 dev_dependencies:
   flutter_test:
