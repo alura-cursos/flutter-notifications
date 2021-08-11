@@ -26,12 +26,10 @@ start
 ├── aula_1
 ├── aula_2
 ├── aula_3
-├── aula_4
 └── main
 ```
 
-A branch [start](https://github.com/alura-cursos/flutter-notifications/tree/start) é o ponto de partida do repositório, é partindo dela que desenvolveremos a aula_1. Por sua vez, a aula_2 é uma continuação da aula_1 e assim vai sucessivamente. A branch main é a final, nela você encontra o código final criado no curso até a aula_4.
-
+A branch [start](https://github.com/alura-cursos/flutter-notifications/tree/start) é o ponto de partida do repositório, é partindo dela que desenvolveremos a aula_1. Por sua vez, a aula_2 é uma continuação da aula_1 e assim vai sucessivamente. A branch main é a final, nela você encontra o código final criado no curso até a aula
 Você pode [baixar](https://github.com/alura-cursos/flutter-notifications/archive/refs/heads/start.zip) o zip com o código inicial do projeto.
 
 
