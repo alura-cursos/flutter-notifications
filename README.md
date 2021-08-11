@@ -26,7 +26,6 @@ start
 ├── aula_1
 ├── aula_2
 ├── aula_3
-├── aula_4
 └── main
 ```
 
