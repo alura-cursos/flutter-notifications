@@ -8,6 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -48,6 +50,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Dev meetups',
       home: EventsScreen(),
+      navigatorKey: navigatorKey,
     );
   }
 }
@@ -68,11 +71,20 @@ void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  var data = await FirebaseMessaging.instance.getInitialMessage();
+  showMyDialog('Olá ${data!.data["name"]}, você ganhou um cupom surpresa! Use-o agora mesmo! Cupom: ${data!.data["coupon"]}');
+
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+
+  print("Mensagem recebida em background: ${message.data}");
 }
 
 void _setPushToken(String? token) async {
-
   SharedPreferences prefs = await SharedPreferences.getInstance();
+
   String? prefsToken = prefs.getString('pushToken');
   bool? prefsSent = prefs.getBool('tokenSent');
 
@@ -109,13 +121,30 @@ void _setPushToken(String? token) async {
       brand = 'Apple';
     }
 
-
     Device device = Device(token: token, brand: brand, model: model);
     sendDevice(device);
   }
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+void showMyDialog(String message) {
 
-  print("Mensagem recebida em background: ${message.data}");
+  Widget okButton =   OutlinedButton(
+    onPressed: () => Navigator.pop(navigatorKey.currentContext!),
+    child: Text('Ok'),
+  );
+
+  AlertDialog alerta = AlertDialog(
+    title: Text("Promoção Imperdivel"),
+    content: Text(message),
+    actions: [
+      okButton,
+    ],
+  );
+
+  showDialog(
+    context: navigatorKey.currentContext!,
+    builder: (BuildContext context) {
+      return alerta;
+    },
+  );
 }
