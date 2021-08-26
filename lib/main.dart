@@ -56,11 +56,14 @@ class App extends StatelessWidget {
 }
 
 void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
+
+  // Obtensão do token
   String? token = await messaging.getToken();
   print('TOKEN: $token');
 
   _setPushToken(token);
 
+  // Mensagem em foreground
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Recebi uma mensagem enquanto estava em primeiro plano!');
     print('Dados da mensagem: ${message.data}');
@@ -70,11 +73,14 @@ void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
     }
   });
 
+  // Background
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  // Mensagem que inicializa o app
   var data = await FirebaseMessaging.instance.getInitialMessage();
-  showMyDialog('Olá ${data!.data["name"]}, você ganhou um cupom surpresa! Use-o agora mesmo! Cupom: ${data!.data["coupon"]}');
 
+  if(data!.data["message"].length > 0)
+    showMyDialog(data!.data["message"]);
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
