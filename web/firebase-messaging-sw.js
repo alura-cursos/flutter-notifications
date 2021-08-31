@@ -2,13 +2,13 @@ importScripts("https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyB_Wm9LBeug6uDDrSdQpvlypK1CGz75e2k",
-  authDomain: "dev-meetups-99be6.firebaseapp.com",
-  projectId: "dev-meetups-99be6",
-  storageBucket: "dev-meetups-99be6.appspot.com",
-  messagingSenderId: "503887868860",
-  appId: "1:503887868860:web:b94c059d111bd39afff1b9",
-  measurementId: "G-PG6X48DC6H"
+      apiKey: "sua api key aqui",
+      authDomain: "seu auth domain aqui
+      projectId: "seu projetc id aqui",
+      storageBucket: "seu storage bucket aqui",
+      messagingSenderId: "seu messaging id aqui",
+      appId: "seu app id aqui",
+      measurementId: "seu meansurement aqui"
 });
 
 // Necessary to receive background messages:
