@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -58,7 +59,9 @@ class App extends StatelessWidget {
 void _startPushNotificationsHandler(FirebaseMessaging messaging) async {
 
   // Obtensão do token
-  String? token = await messaging.getToken();
+  String? token = await messaging.getToken(
+    vapidKey: 'Seu certificados push da Web aqui',
+  );
   print('TOKEN: $token');
 
   _setPushToken(token);
